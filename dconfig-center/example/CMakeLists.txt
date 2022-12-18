@@ -11,8 +11,12 @@ find_package(Dtk REQUIRED Core)
 
 ADD_EXECUTABLE(dconfig-example ./main.cpp)
 
-target_link_libraries(${PROJECT_NAME} PUBLIC Qt5::Core ${DtkCore${DTK_VERSION_SUFFIX}_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} PUBLIC 
+    Qt5::Core 
+    ${DtkCore${DTK_VERSION_SUFFIX}_LIBRARIES} # 即dtkcore
+)
 
+# dconfig_meta_files定义在dtkcommon的cmake目录下的DtkInstallDConfigConfig.cmake，安装位置位/usr/lib
 dconfig_meta_files(APPID dconfig-example BASE ./configs FILES ./configs/example.json ./configs/a/example.json)
 
 dconfig_meta_files(COMMONID true FILES ./configs/example.json ./configs/a/example.json)
